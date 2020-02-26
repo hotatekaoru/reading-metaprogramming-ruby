@@ -6,3 +6,4 @@
 # - Class
 # - Hash
 # - TrueClass
+[String, Integer, Numeric, Class, Hash, TrueClass].each { |klass| klass.define_method(:hoge) { 'hoge' } }

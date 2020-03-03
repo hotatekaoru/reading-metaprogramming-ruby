@@ -5,6 +5,7 @@ class TryOut
     @first_name = first_name
     @middle_name = middle_name
     @last_name = last_name
+    raise ArgumentError if blank?(first_name) || blank?(last_name)
   end
 
   # full_nameメソッドを持つ。これは、ファーストネーム、ミドルネーム、ラストネームを半角スペース1つで結合した文字列を返す。ただし、ミドルネームが省略されている場合に、ファーストネームとラストネームの間には1つのスペースしか置かない
@@ -29,5 +30,10 @@ class TryOut
 
   def name_array
     [first_name, middle_name, last_name].reject(&:empty?)
+  end
+
+  def blank?(value)
+    # https://github.com/rails/rails/blob/6-0-stable/activesupport/lib/active_support/core_ext/object/blank.rb#L19
+    value.respond_to?(:empty?) ? !!value.empty? : !value
   end
 end

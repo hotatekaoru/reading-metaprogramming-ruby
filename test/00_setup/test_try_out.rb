@@ -47,5 +47,10 @@ class TestTryOut < MiniTest::Test
   def test_too_many_arguments
     assert_raises (ArgumentError) {TryOut.new("John", "Milton", "Cage", "Jr")}
   end
-end
 
+  def test_set_nil
+    assert_raises ArgumentError do
+      TryOut.new(nil, nil)
+    end
+  end
+end

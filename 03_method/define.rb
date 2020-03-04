@@ -1,6 +1,9 @@
 # Q1.
 # 次の動作をする A1 class を実装する
 # - "//" を返す "//"メソッドが存在すること
+class A1
+  define_method '//' do '//' end
+end
 
 # Q2.
 # 次の動作をする A2 class を実装する
@@ -9,6 +12,20 @@
 # - 2で定義するメソッドは下記とする
 #   - 受け取った引数の回数分、メソッド名を繰り返した文字列を返すこと
 #   - 引数がnilの場合は、dev_teamメソッドを呼ぶこと
+class A2
+  def initialize args
+    args.each do |arg|
+      method_name = "hoge_#{arg.to_s}"
+      self.class.send(:define_method, method_name do |i|
+        method_name * i || dev_team
+      end
+    end
+  end
+
+  def dev_team
+    'SmartHR Dev Team'
+  end
+end
 
 # Q3.
 # 次の動作をする OriginalAccessor モジュール を実装する
